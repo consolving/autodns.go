@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/consolving/autodns.go/models"
+	"models"
 )
 
 const DEFAULT_URL = "https://gateway.autodns.com"
