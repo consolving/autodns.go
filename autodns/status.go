@@ -1,4 +1,4 @@
-package models
+package autodns
 
 type Status struct {
 	Chardata string   `xml:",chardata"`

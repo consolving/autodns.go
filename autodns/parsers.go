@@ -1,4 +1,4 @@
-package helpers
+package autodns
 
 import "time"
 

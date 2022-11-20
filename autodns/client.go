@@ -7,8 +7,6 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-
-	"models"
 )
 
 const DEFAULT_URL = "https://gateway.autodns.com"
@@ -20,12 +18,12 @@ type Callback func(resp *http.Response, err error)
 type Client struct {
 	Url      string
 	Context  string
-	SystemNs []models.SystemNameServer
+	SystemNs []SystemNameServer
 	User     string
 	password string
 }
 
-func NewClient(user, password, context string, url string, sysNS []models.SystemNameServer) (*Client, error) {
+func NewClient(user, password, context string, url string, sysNS []SystemNameServer) (*Client, error) {
 	if user == "" || password == "" || context == "" {
 		return nil, errors.New("invalid client settings")
 	}
@@ -54,27 +52,27 @@ func NewClientFromEnv() (*Client, error) {
 	return NewClient(user, password, context, url, nameServersFromEnv())
 }
 
-func nameServersFromEnv() []models.SystemNameServer {
+func nameServersFromEnv() []SystemNameServer {
 	keys := []string{"AUTODNS_NS1", "AUTODNS_NS2", "AUTODNS_NS3", "AUTODNS_NS4"}
-	out := make([]models.SystemNameServer, 0)
+	out := make([]SystemNameServer, 0)
 	for _, key := range keys {
 		ns, ok := os.LookupEnv(key)
 		if ok {
-			out = append(out, models.SystemNameServer(ns))
+			out = append(out, SystemNameServer(ns))
 		}
 	}
 	return out
 }
 
-func (c *Client) GetAuth() *models.Auth {
-	return &models.Auth{
+func (c *Client) GetAuth() *Auth {
+	return &Auth{
 		User:     c.User,
 		Password: c.password,
 		Context:  c.Context,
 	}
 }
 
-func (c *Client) PerformRequest(request *models.Request, callback Callback) {
+func (c *Client) PerformRequest(request *Request, callback Callback) {
 	payload, err := xml.Marshal(request)
 	if err != nil {
 		callback(nil, err)

@@ -1,4 +1,4 @@
-package models
+package autodns
 
 import (
 	"encoding/xml"
