@@ -1,0 +1,13 @@
+export AUTODNS_URL=https://gateway.autodns.com
+export AUTODNS_USER=
+export AUTODNS_PASSWORD=
+export AUTODNS_CONTEXT=
+
+export AUTODNS_NS1=ns1.example.com
+export AUTODNS_NS2=ns2.example.com
+export AUTODNS_NS3=ns3.example.com
+export AUTODNS_NS4=ns4.example.com
+
+export AUTODNS_SUBDOMAIN_TTL=60
+export AUTODNS_DOMAIN_TTL=300
+export AUTODNS_NAMESERVER_TTL=600
