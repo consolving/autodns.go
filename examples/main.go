@@ -43,9 +43,8 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	auth := client.GetAuth()
 
-	request, err := autodns.NewRequest(auth)
+	request, err := client.NewRequest()
 	if err != nil {
 		log.Fatal(err)
 	}
