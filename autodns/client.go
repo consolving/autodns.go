@@ -21,9 +21,14 @@ type Client struct {
 	SystemNs []SystemNameServer
 	User     string
 	password string
+	lang     string
 }
 
 func NewClient(user, password, context string, url string, sysNS []SystemNameServer) (*Client, error) {
+	return NewLangClient(user, password, "de", context, url, sysNS)
+}
+
+func NewLangClient(user, password, lang, context string, url string, sysNS []SystemNameServer) (*Client, error) {
 	if user == "" || password == "" || context == "" {
 		return nil, errors.New("invalid client settings")
 	}
@@ -36,6 +41,7 @@ func NewClient(user, password, context string, url string, sysNS []SystemNameSer
 		SystemNs: sysNS,
 		User:     user,
 		password: password,
+		lang:     lang,
 	}, nil
 }
 
@@ -64,12 +70,15 @@ func nameServersFromEnv() []SystemNameServer {
 	return out
 }
 
-func (c *Client) GetAuth() *Auth {
-	return &Auth{
-		User:     c.User,
-		Password: c.password,
-		Context:  c.Context,
-	}
+func (c *Client) NewRequest() (*Request, error) {
+	return &Request{
+		Auth: &Auth{
+			User:     c.User,
+			Password: c.password,
+			Context:  c.Context,
+		},
+		Language: c.lang,
+	}, nil
 }
 
 func (c *Client) PerformRequest(request *Request, callback Callback) {

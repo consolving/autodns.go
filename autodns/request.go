@@ -14,13 +14,6 @@ type Request struct {
 	Task     *Task
 }
 
-func NewRequest(auth *Auth) (*Request, error) {
-	return &Request{
-		Auth:     auth,
-		Language: "de",
-	}, nil
-}
-
 func ParseRequest(data string) (*Request, error) {
 	var replacer = strings.NewReplacer("&#xA;", "", "&#x9;", "", "\n", "", "\t", "")
 	var request *Request
