@@ -7,7 +7,7 @@ import (
 )
 
 type Zone struct {
-	Text              string             `xml:",chardata"`
+	Chardata          string             `xml:",chardata"`
 	Name              string             `xml:"name"`
 	Changed           *Changed           `xml:"changed"`
 	Created           *Created           `xml:"created"`
@@ -38,47 +38,47 @@ type NsGroup string
 type PurgeType string
 
 type User struct {
-	Text    string `xml:",chardata"`
-	User    string `xml:"user"`
-	Context string `xml:"context"`
+	Chardata string `xml:",chardata"`
+	User     string `xml:"user"`
+	Context  string `xml:"context"`
 }
 
 type Free struct {
-	XMLName xml.Name `xml:"free"`
-	Text    string   `xml:",chardata"`
+	XMLName  xml.Name `xml:"free"`
+	Chardata string   `xml:",chardata"`
 }
 
 type Main struct {
-	Text  string `xml:",chardata"`
-	Value string `xml:"value"`
-	Ttl   string `xml:"ttl"`
+	Chardata string `xml:",chardata"`
+	Value    string `xml:"value"`
+	Ttl      string `xml:"ttl"`
 }
 
 type Soa struct {
-	Text    string `xml:",chardata"`
-	Level   string `xml:"level,omitempty"`
-	Refresh string `xml:"refresh"`
-	Retry   string `xml:"retry"`
-	Expire  string `xml:"expire"`
-	Ttl     string `xml:"ttl"`
-	Email   string `xml:"email"`
-	Default string `xml:"default"`
+	Chardata string `xml:",chardata"`
+	Level    string `xml:"level,omitempty"`
+	Refresh  string `xml:"refresh"`
+	Retry    string `xml:"retry"`
+	Expire   string `xml:"expire"`
+	Ttl      string `xml:"ttl"`
+	Email    string `xml:"email"`
+	Default  string `xml:"default"`
 }
 
 type NameServer struct {
-	XMLName xml.Name `xml:"nserver"`
-	Text    string   `xml:",chardata"`
-	Name    string   `xml:"name"`
-	Ttl     string   `xml:"ttl,omitempty"`
+	XMLName  xml.Name `xml:"nserver"`
+	Chardata string   `xml:",chardata"`
+	Name     string   `xml:"name"`
+	Ttl      string   `xml:"ttl,omitempty"`
 }
 
 type ResourceRecord struct {
-	Text  string  `xml:",chardata"`
-	Name  string  `xml:"name"`
-	Ttl   string  `xml:"ttl"`
-	Type  *RRType `xml:"type"`
-	Pref  string  `xml:"pref,omitempty"`
-	Value string  `xml:"value"`
+	Chardata string  `xml:",chardata"`
+	Name     string  `xml:"name"`
+	Ttl      string  `xml:"ttl"`
+	Type     *RRType `xml:"type"`
+	Pref     string  `xml:"pref,omitempty"`
+	Value    string  `xml:"value"`
 }
 
 func NewZone(name string) (*Zone, error) {
@@ -92,8 +92,8 @@ func (zone *Zone) WithSystemNS(sysNameServer SystemNameServer) *Zone {
 	return zone
 }
 
-func (zone *Zone) WithFree(text string) *Zone {
-	free := &Free{Text: text}
+func (zone *Zone) WithFree(chardata string) *Zone {
+	free := &Free{Chardata: chardata}
 	zone.Free = append(zone.Free, free)
 	return zone
 }

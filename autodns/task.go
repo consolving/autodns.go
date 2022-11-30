@@ -5,18 +5,18 @@ import (
 )
 
 type Task struct {
-	XMLName xml.Name `xml:"task"`
-	Text    string   `xml:",chardata"`
-	Code    Code     `xml:"code"`
-	Default *Default `xml:"default"`
-	Key     *TaskKey `xml:"key,omitempty"`
-	Zone    *Zone    `xml:"zone"`
+	XMLName  xml.Name `xml:"task"`
+	Chardata string   `xml:",chardata"`
+	Code     Code     `xml:"code"`
+	Default  *Default `xml:"default"`
+	Key      *TaskKey `xml:"key,omitempty"`
+	Zone     *Zone    `xml:"zone"`
 }
 
 type TaskKey string
 
 type Default struct {
-	Text                  string            `xml:",chardata"`
+	Chardata              string            `xml:",chardata"`
 	Comment               *Comment          `xml:"comment"`
 	ResourceRecordAdds    []*ResourceRecord `xml:"rr_add"`
 	ResourceRecordRemoves []*ResourceRecord `xml:"rr_rem"`

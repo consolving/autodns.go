@@ -7,7 +7,7 @@ import (
 
 type Request struct {
 	XMLName  xml.Name `xml:"request"`
-	Text     string   `xml:",chardata"`
+	Chardata string   `xml:",chardata"`
 	Auth     *Auth
 	Owner    *Owner
 	Language string `xml:"language"`
